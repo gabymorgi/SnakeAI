@@ -3,8 +3,8 @@ from settings import *
 from utils import BoardElement
 
 class Food:
-    def __init__(self, board):
-        self.position = self.find_empty_position(board)
+    def __init__(self, board, pos=None):
+        self.position = self.find_empty_position(board) if pos is None else pos
         if self.position:
             board[self.position[0]][self.position[1]] = BoardElement.FOOD
 
@@ -32,7 +32,6 @@ class Food:
                     total_empty_spaces += 1
                     empty_positions.append((i, j))
 
-        print("Max attempts reached", total_empty_spaces)
         # Si no hay espacios vacíos, retornar None
         if total_empty_spaces == 0:
             return None
